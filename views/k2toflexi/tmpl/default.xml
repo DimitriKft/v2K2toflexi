@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<fields name="request">
+		<fieldset name="request">
+			<field
+					name="replaceflexi"
+					type="list"
+					label="replaceflexi"
+					description="replaceflexi"
+					default="1">
+                                <option value="1">Remplacer les element present dans flexicontent</option>
+                                <option value="2">ne pas remplacer</option>
+                        </field>
+		</fieldset>
+	</fields>
+</config>

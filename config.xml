@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<fieldset name="request"
+		label="COM_K2TOFLEXI_OPTIONS_LABEL"
+		description="COM_K2TOFLEXI_OPTIONS_DESC"
+		addfieldpath="administrator/components/com_k2toflexi/elements/">
+		<field name="" type="separator" default="COM_K2TOFLEXI_GLOBALMIGRATION_LABEL" level="level1" />
+				<field
+					name="replaceflexi"
+					type="radio"
+					label="COM_K2TOFLEXI_REMPLACE_LABEL"
+					description="COM_K2TOFLEXI_REMPLACE_DESC"
+					default="1"
+					class="btn btn-group btn-group-yesno">
+                   		<option value="1">COM_K2TOFLEXI_REMPLACE_REPLACEYES</option>
+                   		<option value="2">COM_K2TOFLEXI_REMPLACE_REPLACENO</option>
+            	</field>
+		<field name="" type="separator" default="COM_K2TOFLEXI_MIGATIONSTEP_LABEL" level="level1" />
+		<field
+			name="insertTags"
+			type="radio"
+			label="COM_K2TOFLEXI_TAGS_LABEL"
+			description="COM_K2TOFLEXI_TAGS_DESC"
+			default="1"
+			class="btn btn-group btn-group-yesno">
+									<option value="1">COM_K2TOFLEXI_YES</option>
+									<option value="2">COM_K2TOFLEXI_NO</option>
+					</field>
+		<field
+			name="insertFields"
+			type="radio"
+			label="COM_K2TOFLEXI_FIELDS_LABEL"
+			description="COM_K2TOFLEXI_FIELDS_DESC"
+			default="1"
+			class="btn btn-group btn-group-yesno">
+									<option value="1">COM_K2TOFLEXI_YES</option>
+									<option value="2">COM_K2TOFLEXI_NO</option>
+					</field>
+		<field
+			name="insertType"
+			type="radio"
+			label="COM_K2TOFLEXI_TYPES_LABEL"
+			description="COM_K2TOFLEXI_TYPES_DESC"
+			default="1"
+			class="btn btn-group btn-group-yesno">
+										<option value="1">COM_K2TOFLEXI_YES</option>
+										<option value="2">COM_K2TOFLEXI_NO</option>
+					</field>
+		<field
+			name="insertCategory"
+			type="radio"
+			label="COM_K2TOFLEXI_CATEGORIES_LABEL"
+			description="COM_K2TOFLEXI_CATEGORIES_DESC"
+			default="1"
+			class="btn btn-group btn-group-yesno">
+			<option value="1">COM_K2TOFLEXI_YES</option>
+			<option value="2">COM_K2TOFLEXI_NO</option>
+					</field>
+		<field
+			name="insertItem"
+			type="radio"
+			label="COM_K2TOFLEXI_ITEMS_LABEL"
+			description="COM_K2TOFLEXI_ITEMS_DESC"
+			default="1"
+			class="btn btn-group btn-group-yesno">
+			<option value="1">COM_K2TOFLEXI_YES</option>
+			<option value="2">COM_K2TOFLEXI_NO</option>
+					</field>
+
+		<field name="" type="separator" default="COM_K2TOFLEXI_CATEGORIES_OPTIONS" level="level1" />
+				<field
+					name="insertImg"
+					type="radio"
+					label="COM_K2TOFLEXI_IMAGECAT_LABEL"
+					description="COM_K2TOFLEXI_IMAGECAT_DESC"
+					default="1"
+					class="btn btn-group btn-group-yesno">
+					<option value="1">COM_K2TOFLEXI_YES</option>
+					<option value="2">COM_K2TOFLEXI_NO</option>
+            	</field>
+		<field name="" type="separator" default="COM_K2TOFLEXI_IMAGEFIELDOPTION_LABEL" level="level1" />
+							<field
+								name="imageType"
+								type="list"
+								label="COM_K2TOFLEXI_IMAGEFIELDTYPE_LABEL"
+								description="COM_K2TOFLEXI_IMAGEFIELDTYPE_DESC"
+								default="1">
+														<option value="1">COM_K2TOFLEXI_IMAGEFIELDTYPE_ITEMMODE</option>
+														<option value="2">COM_K2TOFLEXI_IMAGEFIELDTYPE_JOOMLAMODE</option>
+										</field>
+					<field
+						name="insertImg2"
+						type="radio"
+						label="COM_K2TOFLEXI_IMAGEMIGRATION_LABEL"
+						description="COM_K2TOFLEXI_IMAGEMIGRATION_DESC"
+						default="1"
+						class="btn btn-group btn-group-yesno">
+						<option value="1">COM_K2TOFLEXI_YES</option>
+						<option value="2">COM_K2TOFLEXI_NO</option>
+			           </field>
+		<field name="" type="separator" default="COM_K2TOFLEXI_FIELDIGRATION_OPTIONS" level="level1" />
+					<field
+						name="insertFile"
+						type="radio"
+						label="COM_K2TOFLEXI_FIELDIGRATION_LABEL"
+						description="COM_K2TOFLEXI_FIELDIGRATION_DESC"
+						default="1"
+						class="btn btn-group btn-group-yesno">>
+						<option value="1">COM_K2TOFLEXI_YES</option>
+						<option value="2">COM_K2TOFLEXI_NO</option>
+			           </field>
+		<field name="" type="separator" default="COM_K2TOFLEXI_DEBUG_OPTIONS" level="level1" />
+					<field
+						name="debug"
+						type="radio"
+						label="COM_K2TOFLEXI_DEBUG_LABEL"
+						description="COM_K2TOFLEXI_DEBUG_DESC"
+						default=""
+						class="btn btn-group btn-group-yesno">
+						<option value="1">COM_K2TOFLEXI_YES</option>
+						<option value="">COM_K2TOFLEXI_NO</option>
+					</field>
+		<field name="form_tab_icons" type="textarea" rows="2" cols="60" label="FLEXI_FORM_TAB_ICONS" description="FLEXI_FORM_TAB_ICONS_DESC"
+				default="1:icon-file-2, 2:icon-signup, 3:icon-tree-2, 4:icon-calendar, 5:icon-bookmark, 6:icon-eye-open, 7:icon-palette" class="input-xxlarge" />
+	</fieldset>
+	<fieldset
+		name="permissions"
+		label="JCONFIG_PERMISSIONS_LABEL"
+		description="JCONFIG_PERMISSIONS_DESC"
+	>
+		<field
+			name="rules"
+			type="rules"
+			label="Permissions"
+			class="inputbox"
+			validate="rules"
+			filter="rules"
+			component="com_k2toflexi"
+			section="component"
+		/>
+
+
+	</fieldset>
+</config>

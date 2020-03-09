@@ -1,0 +1,30 @@
+div#messages {
+    height: 500px;
+    display: block;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 791px;
+    padding: 20px;
+}
+div#contenu {
+    width: 830px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 35px;
+}
+div#titre {
+    text-align:center;
+}
+div#boutons {
+    float:right;
+    text-align: right !important;
+    display: block;
+   	height: 50px;
+}
+div#loading2, div#loading2 {
+}
+div#k2toflexi {
+    width: 50%;
+    float: left;
+}

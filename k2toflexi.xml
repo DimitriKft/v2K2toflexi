@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component"
+		   version="3.7.5"
+		   method="upgrade">
+
+	<name>com_k2toflexi</name>
+	<!-- The following elements are optional and free of formatting constraints -->
+	<creationDate>01 September 2017</creationDate>
+	<author>Yohan Plot, Yannick Berges, Com'3Elles</author>
+	<authorEmail>contact@com3elles.com</authorEmail>
+	<authorUrl>https://www.com3elles.com</authorUrl>
+	<copyright>(C) 2017 Com'3Elles. All right reserved</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<!--  The version string is recorded in the components table -->
+	<version>0.5</version>
+	<!-- The description is optional and defaults to the name -->
+	<description>COM_K2TOFLEXI_XML_DESCRIPTION</description>
+
+	<install> <!-- Runs on install -->
+		<sql>
+			<file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
+		</sql>
+	</install>
+	<uninstall> <!-- Runs on uninstall -->
+		<sql>
+			<file driver="mysql" charset="utf8">sql/uninstall.mysql.utf8.sql</file>
+		</sql>
+	</uninstall>
+	<update>
+		<sql>
+			<file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
+		</sql>
+</update>
+
+	<scriptfile>installScript.php</scriptfile>
+	<administration>
+		<menu link='index.php?option=com_k2toflexi'>K2toFLEXIcontent</menu>
+		<files folder="admin">
+			<filename>access.xml</filename>
+			<filename>config.xml</filename>
+			<filename>controller.php</filename>
+			<filename>index.html</filename>
+			<filename>installScript.php</filename>
+			<filename>k2toflexi.php</filename>
+			<filename>k2toflexi.xml</filename>
+			<folder>assets</folder>
+			<folder>controllers</folder>
+			<folder>elements</folder>
+			<folder>helpers</folder>
+			<folder>language</folder>
+			<folder>models</folder>
+			<folder>sql</folder>
+			<folder>views</folder>
+		</files>
+
+	</administration>
+
+</extension>
