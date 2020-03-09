@@ -28,25 +28,30 @@ class K2toflexiViewTag extends JViewLegacy
 	 */
 	function display($tpl = null)
 	{
+		// Toolbar
+		$this->addToolBar();
+
+		// Recovored data
 		$this->items		= $this->get('Items');
 		$this->pagination	= $this->get('Pagination');
 
+		// Sidebar
 		require_once JPATH_COMPONENT . '/helpers/k2toflexi.php';
-		// Test Sidebar
 		K2toflexidHelper::addSubmenu('tag');
-
 		$this->sidebar = JHtmlSidebar::render();
 
-     
 		// Check for errors.
 		if (count($errors = $this->get('Errors'))) {
 			JError::raiseError(500, implode("\n", $errors));
 			return false;
 		}
-    
-        $this->sidebar = JHtmlSidebar::render();
 
 		// Display the view
 		parent::display($tpl);
-    }
+	}
+	
+	protected function addToolBar()
+	{
+		JToolBarHelper::title(JText::_("Selection des tags"));
+	}
 }

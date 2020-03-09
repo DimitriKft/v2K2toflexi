@@ -17,7 +17,7 @@ defined('_JEXEC') or die('Restricted access');
  */
 class K2toflexiViewField extends JViewLegacy
 {
-	/**
+/**
 	 * Display the Hello World view
 	 *
 	 * @param   string  $tpl  The name of the template file to parse; automatically searches through the template paths.
@@ -26,26 +26,30 @@ class K2toflexiViewField extends JViewLegacy
 	 */
 	function display($tpl = null)
 	{
+		// Toolbar
+		$this->addToolBar();
+
+		// Recovored data
 		$this->items		= $this->get('Items');
 		$this->pagination	= $this->get('Pagination');
 
+		// Sidebar
 		require_once JPATH_COMPONENT . '/helpers/k2toflexi.php';
-		// Test Sidebar
 		K2toflexidHelper::addSubmenu('field');
-
 		$this->sidebar = JHtmlSidebar::render();
 
-     
 		// Check for errors.
 		if (count($errors = $this->get('Errors'))) {
 			JError::raiseError(500, implode("\n", $errors));
 			return false;
 		}
-    
-        $this->sidebar = JHtmlSidebar::render();
 
 		// Display the view
 		parent::display($tpl);
-    }
+	}
 	
+	protected function addToolBar()
+	{
+		JToolBarHelper::title(JText::_("Selection des fields"));
+	}
 }

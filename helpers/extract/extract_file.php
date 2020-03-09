@@ -37,7 +37,7 @@ class ExtractFileHelper
 		{
 			$query = $db->getQuery(true);
 			$query
-			->select($db->quoteName(array('id', 'itemID', 'filename', 'title', 'titleAttribute', 'hits')))
+			->select($db->quoteName(array('itemID', 'filename', 'title', 'titleAttribute', 'hits')))
 			->from($db->quoteName('#__k2_attachments'));
 
 			$db->setQuery($query);
@@ -79,116 +79,104 @@ class ExtractFileHelper
 	}
 
 
+	
+
 	public function insertFiles($row)
 	{
 		$db             = JFactory::getDBO();
 		$user           = JFactory::getUser();
 		$dateTime       = date_create('now')->format('Y-m-d H:i:s');
-		$id             = $row['id'];
 		$itemID         = $row['itemID'];
 		$filename       = $row['filename'];
 		$title          = $row['title'];
 		$titleAttribute = $row['titleAttribute'];
 		$hits           = $row['hits'];
-		$message        = self::addFile($id, $itemID, $filename, $title, $titleAttribute, $hits, $user->id, $dateTime);
+		$message   = self::addFile(0, $db->Quote($itemID),$db->Quote($filename),$db->Quote($title),$db->Quote($titleAttribute), $db->Quote($hits), $user->id, $db->Quote($dateTime));
 		return $message ;
-    }
+	}
     
 
-    
-	public function addFile($id, $itemID, $filename, $title, $titleAttribute, $hits, $user, $datetime)
+
+	
+
+	public function addFile($record_ID, $itemID, $filename, $title, $titleAttribute, $hits, $user, $datetime)
 	{
-		// record_ID is the id of the item that you want to load, or set it to zero for new item
+				// record_ID is the id of the item that you want to load, or set it to zero for new item
 
 		// **************************************
 		// Include the needed classes and helpers
 		// **************************************
 
-		if(!defined('DS')) define('DS',DIRECTORY_SEPARATOR);//TODO a vérifier
+		if(!defined('DS')) define('DS',DIRECTORY_SEPARATOR);
 
 		// ***
 		// *** Create the item model object
 		// ***
 
-		$db    = JFactory::getDBO();
+		$db = JFactory::getDBO();
 		$query = $db->getQuery(true);
 		$query
-		->select($db->quoteName(array('filename')))
-		->from($db->quoteName('#__flexicontent_files'))
-		->where($db->quoteName('filename') . ' = '. $db->Quote($filename). ' AND ' . $db->quoteName('altname') . ' = '.  $db->quote($title));
+		->select($db->quoteName(array('itemID')))
+		->from($db->quoteName('#__k2toflexi_attachments'))
+				->where($db->quoteName('itemID') . ' = '. $itemID);
 		$db->setQuery($query);
 		$namelike =  $db->loadResult();
-
 		if(!$namelike)
 		{
-			$ext = substr($filename, strrpos($filename, '.')+1);
-			$sourceImage = JPATH_ROOT.'/media/k2/attachments/'.$filename;
-
 			try
+			// Prepare the insert query.
 			{
 				$db->transactionStart();
 				$query = $db->getQuery(true);
-
+				
 				// Insert columns.
-				$columns = array('filename', 'filename_original', 'altname', 'description', 'url', 'secure',
-						'ext', 'published', 'language', 'hits', 'size', 'assignments', 'stamp', 'uploaded',
-						'uploaded_by', 'checked_out', 'checked_out_time', 'access', 'attribs');
-
+				$columns = array('itemID', 'filename', 'title', 'titleAttribute', 'hits');
+				
 				// Insert values.
-				$values = array($db->Quote($filename), $db->Quote($filename), $db->Quote($title), $db->Quote(''), 0, 1, $db->Quote($ext), 1, $db->Quote('*'),
-						$db->Quote($hits), $db->Quote(0), $db->Quote(0), $db->Quote(1), $db->Quote($datetime),
-						$db->Quote($user), $db->Quote(0), $db->Quote($datetime), $db->Quote(1), $db->Quote(''));
-
-				// Prepare the insert query.
+				$values = array($itemID, $filename, $title, $titleAttribute, $hits);
 				$query
-				->insert($db->quoteName('#__flexicontent_files'))
+				->insert($db->quoteName('#__k2toflexi_attachments'))
 				->columns($db->quoteName($columns))
 				->values(implode(',', $values));
 				$db->setQuery($query);
 				$result = $db->execute();
 				$db->transactionCommit();
+				return "success" ;
 			}
 			catch(Exception $e)
 			{
-				// catch any database errors.
+					// catch any database errors.
 				$db->transactionRollback();
-				self::deleteTag($name);
+				self::deleteField($itemID);
+				return "failed" ;// catch any database errors.
+				$db->transactionRollback();
+				self::deleteField($itemID);
 				return "failed" ;
 			}
-
-			if(JFile::exists($sourceImage))
-			{
-				JFile::copy($sourceImage, JPATH_ROOT.'/components/com_flexicontent/uploads/'.$filename);
-				return 'success';
-			}
-			else
-			{
-				return "failed";
-			}
+			return "success" ;
 		}
-		else
-		{
+		else{
 			return "exist" ;
 		}
     }
     
 
-    public function deleteFile($filename, $title)
+
+	public function deleteFile($filename, $title)
 	{
-		$db    = JFactory::getDBO();
 		$db    = JFactory::getDBO();
 		$query = $db->getQuery(true);
 		$query
 		->select($db->quoteName(array('id')))
-		->from($db->quoteName('#__flexicontent_files'))
-		->where($db->quoteName('filename') . ' = '. $db->Quote($filename). ' AND ' . $db->quoteName('altname') . ' = '.  $db->quote($title));
+		->from($db->quoteName('#__k2toflexi_attachments'))
+		->where($db->quoteName('itemID') . ' = '. $db->Quote($itemID));
 		$db->setQuery($query);
-		$id =  $db->loadResult();
-		$query = $db->getQuery(true);
+		$id         =  $db->loadResult();
+		$query      = $db->getQuery(true);
 		$conditions = array(
 				$db->quoteName('id') . ' = '. $db->Quote($id)
 		);
-		$query->delete($db->quoteName('#__flexicontent_files'));
+		$query->delete($db->quoteName('#__k2toflexi_attachments'));
 		$query->where($conditions);
 		$db->setQuery($query);
 		$db->query($query);

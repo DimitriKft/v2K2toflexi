@@ -37,7 +37,7 @@ class InsertFieldHelper
 			$query   = $db->getQuery(true);
 			$query
 			->select($db->quoteName(array('name', 'value', 'published', 'type')))
-			->from($db->quoteName('#__k2_extra_fields'));
+			->from($db->quoteName('#__k2toflexi_extra_fields'));
 			$db->setQuery($query);
 			$sql     =  $db->loadAssocList();
 		}

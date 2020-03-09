@@ -42,7 +42,7 @@ class InsertItemHelper
 					'checked_out_time', 'modified', 'modified_by', 'publish_up', 'publish_down', 'trash', 'access', 'ordering',
 					'featured', 'featured_ordering', 'image_caption', 'image_credits', 'video_caption', 'video_credits', 'hits',
 					'params', 'metadesc', 'metadata', 'metakey', 'plugins', 'language')))
-			->from($db->quoteName('#__k2_items'));
+			->from($db->quoteName('#__k2toflexi_items'));
 			$db->setQuery($query);
 			$sql  =  $db->loadAssocList();
 		}

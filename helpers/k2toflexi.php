@@ -34,6 +34,11 @@ class K2toflexidHelper extends JHelperContent
             $vName == 'type'
         );
         JHtmlSidebar::addEntry(
+            'Sélection File',
+            'index.php?option=com_k2toflexi&view=file',
+            $vName == 'file'
+        );
+        JHtmlSidebar::addEntry(
             'Sélection Catégorie',
             'index.php?option=com_k2toflexi&view=category',
             $vName == 'category'
@@ -63,6 +68,5 @@ class K2toflexidHelper extends JHelperContent
             'index.php?option=com_k2toflexi',
             $vName == 'migrate'
         );
-        
     }
 }

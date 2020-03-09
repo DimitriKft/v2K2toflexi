@@ -1,5 +1,3 @@
-
-
 <?php
 /**
  * @package     Joomla.Administrator
@@ -17,9 +15,9 @@ defined('_JEXEC') or die('Restricted access');
  *
  * @since  0.0.1
  */
-class K2toflexiViewSelect extends JViewLegacy
+class K2toflexiViewFile extends JViewLegacy
 {
-	/**
+/**
 	 * Display the Hello World view
 	 *
 	 * @param   string  $tpl  The name of the template file to parse; automatically searches through the template paths.
@@ -37,7 +35,7 @@ class K2toflexiViewSelect extends JViewLegacy
 
 		// Sidebar
 		require_once JPATH_COMPONENT . '/helpers/k2toflexi.php';
-		K2toflexidHelper::addSubmenu('select');
+		K2toflexidHelper::addSubmenu('file');
 		$this->sidebar = JHtmlSidebar::render();
 
 		// Check for errors.
@@ -52,6 +50,6 @@ class K2toflexiViewSelect extends JViewLegacy
 	
 	protected function addToolBar()
 	{
-		JToolBarHelper::title(JText::_("Votre sélection"));
+		JToolBarHelper::title(JText::_("Selection des files"));
 	}
 }

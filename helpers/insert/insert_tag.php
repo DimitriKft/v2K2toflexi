@@ -38,7 +38,7 @@ class InsertTagHelper
 			$query        = $db->getQuery(true);
 			$query
 			->select($db->quoteName(array('name', 'published')))
-			->from($db->quoteName('#__k2_tags'));
+			->from($db->quoteName('#__k2toflexi_tags'));
 			$db->setQuery($query);
 			$sql          =  $db->loadAssocList();
 		}

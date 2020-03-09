@@ -32,7 +32,7 @@ class k2toflexiViewAnalysis extends JViewLegacy
 		$user		= JFactory::getUser();
 		$userId		= $user->get('id');
 		
-		JToolBarHelper::title(JText::_("COM_K2TOFLEXI_MIGRATE_TITLE"));
+		JToolBarHelper::title(JText::_("Analyse des données de K2 "));
 
 
 		if ( !JComponentHelper::isEnabled( 'com_flexicontent', true) ) {

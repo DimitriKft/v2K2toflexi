@@ -37,7 +37,7 @@ class InsertCatHelper
 			$query = $db->getQuery(true);
 			$query
 			->select($db->quoteName(array('id', 'name', 'alias', 'description', 'parent', 'extraFieldsGroup', 'published', 'access', 'ordering', 'image', 'params', 'trash', 'plugins', 'language')))
-			->from($db->quoteName('#__k2_categories'));
+			->from($db->quoteName('#__k2toflexi_categories'));
 			$db->setQuery($query);
 			$sql2     =  $db->loadAssocList();
 			$sqlplace =  array();

@@ -9,7 +9,6 @@
 
 // no direct access
 defined('_JEXEC') or die('Restricted access');
-
 $document = JFactory::getDocument();
 $document->addStyleSheet("./components/com_k2toflexi/assets/css/style.css",'text/css',"screen");
 
@@ -26,27 +25,35 @@ $document->addStyleSheet("./components/com_k2toflexi/assets/css/style.css",'text
 <?php endif;?>
 
 <div id="contenu">		
-	<h1>Sélection des Tags</h1>
+	<h1>Sélection des Fields</h1>
 	<table class="table table-striped table-hover">
 		<thead>
-		<tr>
-			<th width="1%">ID</th>
-			<th width="2%">NAME</th>
-			<th width="2%">PUBLISHED</th>
-		</tr>
+			<tr>
+				<th width="1%">ID</th>
+				<th width="2%">ItemID</th>
+				<th width="2%">FILENAME</th>
+				<th width="2%">TITLE</th>
+				<th width="2%">TITLEATTRIBUTE</th>
+				<th width="2%">HITS</th>
+			</tr>
 		</thead>
 		<tfoot>
 			<tr>
-				<td colspan="5"><?php echo $this->pagination->getListFooter(); ?></td>
+				<td colspan="5">
+					<?php echo $this->pagination->getListFooter(); ?>
+				</td>
 			</tr>
 		</tfoot>
 		<tbody>
 			<?php if (!empty($this->items)) : ?>
-				<?php foreach($this->items as $i => $row) : ?>
+				<?php foreach ($this->items as $i => $row) : ?>
 					<tr>
 						<td align="center"><?php echo $row->id; ?></td>
-						<td><?php echo $row->name; ?></td>
-						<td align="center"><?php echo JHtml::_('jgrid.published', $row->published, $i, 'k2toflexi', true, 'cb'); ?></td>
+						<td align="center"><?php echo $row->itemID; ?></td>
+						<td align="center"><?php echo $row->filename; ?></td>
+						<td align="center"><?php echo $row->title; ?></td>
+						<td align="center"><?php echo $row->titleAttribute; ?></td>
+						<td align="center"><?php echo $row->hits; ?></td>	
 					</tr>
 				<?php endforeach; ?>
 			<?php endif; ?>

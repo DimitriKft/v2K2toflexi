@@ -36,7 +36,7 @@ class InsertTypeHelper
 			$query = $db->getQuery(true);
 			$query
 			->select($db->quoteName(array('id', 'name')))
-			->from($db->quoteName('#__k2_extra_fields_groups'));
+			->from($db->quoteName('#__k2toflexi_extra_fields_groups'));
 			$db->setQuery($query);
 			$sql   =  $db->loadAssocList();
 		}
