@@ -32,17 +32,17 @@ $document->addStyleSheet("./components/com_k2toflexi/assets/css/style.css",'text
 		<tr>
 			<th width="1%">ID</th>
 			<th width="2%">TITLE</th>
-			<th width="2%">ALIAS</th>
-			<th width="2%">CATID</th>
+			<!-- <th width="2%">ALIAS</th>
+			<th width="2%">CATID</th>  -->
 			<th width="2%">PUBLISHED</th>
-			<th width="2%">INTROTEXT</th>
+			<!--<th width="2%">INTROTEXT</th> 
 			<th width="2%">FULLTEXT</th>
 			<th width="2%">VIDEO</th>
 			<th width="2%">GALLERY</th>
 			<th width="2%">EXTRA_FIELDS</th>
-			<th width="2%">EXTRA_FIELDS_SEARCH</th>
+			<th width="2%">EXTRA_FIELDS_SEARCH</th> -->
 			<th width="2%">CREATED</th>
-			<th width="2%">CREATED_BY</th>
+			<!-- <th width="2%">CREATED_BY</th>
 			<th width="2%">CREATED_BY_ALIAS</th>
 			<th width="2%">CHECKED_OUT</th>
 			<th width="2%">CHECKED_OUT_TIME</th>
@@ -65,7 +65,7 @@ $document->addStyleSheet("./components/com_k2toflexi/assets/css/style.css",'text
 			<th width="2%">METADATA</th>
 			<th width="2%">METAKEY</th>
 			<th width="2%">PLUGINS</th>
-			<th width="2%">LANGUAGE</th>
+			<th width="2%">LANGUAGE</th> -->
 		</tr>
 		</thead>
 		<tfoot>
@@ -81,17 +81,17 @@ $document->addStyleSheet("./components/com_k2toflexi/assets/css/style.css",'text
 					<tr>
 						<td align="center"><?php echo $row->id; ?></td>
 						<td align="center"><?php echo $row->title; ?></td>
-						<td align="center"><?php echo $row->alias; ?></td>
-						<td align="center"><?php echo $row->catid; ?></td>
+					<!--	<td align="center"><?php echo $row->alias; ?></td>  
+						<td align="center"><?php echo $row->catid; ?></td> -->
 						<td align="center"><?php echo JHtml::_('jgrid.published', $row->published, $i, 'k2toflexi', true, 'cb'); ?></td>
-						<td align="center"><?php echo $row->introtext; ?></td>
+						<!-- <td align="center"><?php echo $row->introtext; ?></td>
 						<td align="center"><?php echo $row->fulltext; ?></td>
 						<td align="center"><?php echo $row->video; ?></td>
 						<td align="center"><?php echo $row->gallery; ?></td>
 						<td align="center"><?php echo $row->extra_fields; ?></td>
-						<td align="center"><?php echo $row->extra_fields_search; ?></td>
+						<td align="center"><?php echo $row->extra_fields_search; ?></td> -->
 						<td align="center"><?php echo $row->created; ?></td>
-						<td align="center"><?php echo $row->created_by; ?></td>
+					<!--	<td align="center"><?php echo $row->created_by; ?></td>
 						<td align="center"><?php echo $row->created_by_alias; ?></td>
 						<td align="center"><?php echo $row->checked_out; ?></td>
 						<td align="center"><?php echo $row->checked_out_time; ?></td>
@@ -114,7 +114,7 @@ $document->addStyleSheet("./components/com_k2toflexi/assets/css/style.css",'text
 						<td align="center"><?php echo $row->metadata; ?></td>
 						<td align="center"><?php echo $row->metakey; ?></td>
 						<td align="center"><?php echo $row->plugins; ?></td>
-						<td align="center"><?php echo $row->language; ?></td>
+						<td align="center"><?php echo $row->language; ?></td> -->
 					</tr>
 				<?php endforeach; ?>
 			<?php endif; ?>

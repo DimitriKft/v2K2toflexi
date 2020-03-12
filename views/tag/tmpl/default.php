@@ -53,3 +53,4 @@ $document->addStyleSheet("./components/com_k2toflexi/assets/css/style.css",'text
 		</tbody>
 	</table>
 </div>
+

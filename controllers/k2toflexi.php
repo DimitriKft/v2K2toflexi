@@ -29,7 +29,7 @@ class K2toflexiControllerK2toflexi extends JControllerLegacy {
 	
 	function display($cachable = false, $urlparams = false) 
 	{
-		require_once JPATH_COMPONENT.'/helpers/migrate.php';
+		require_once JPATH_COMPONENT.'/helpers/insert/migrate.php';
 
 		// affectation de la vue récupérée en paramètre
 		$input = JFactory::getApplication()->input;

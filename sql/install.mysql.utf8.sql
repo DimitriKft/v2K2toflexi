@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `#__k2toflexi_attachments` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS `#__k2toflexi_categories` (
-    `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+    `id` int(11)  NOT NULL AUTO_INCREMENT,
     `name` varchar(255) NOT NULL,
     `alias` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT '',
     `description` text NOT NULL,
@@ -133,4 +133,34 @@ CREATE TABLE IF NOT EXISTS `#__k2_log` (
     `status` int(11) NOT NULL,
     `response` text NOT NULL,
     `timestamp` datetime NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_unicode_ci;
+
+
+CREATE TABLE IF NOT EXISTS `#__k2toflexi_select` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `id_k2toflexi_extra_fields_groups` INT NOT NULL,
+  `id_k2toflexi_categories` INT NOT NULL,
+  `id_k2toflexi_extra_fields` INT NOT NULL,
+  `id_k2toflexi_tag` INT NOT NULL,
+  `id_k2toflexi_attachments` INT NOT NULL,
+  `id_k2toflexi_items` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_forgein_type`
+  FOREIGN KEY (`id_k2toflexi_extra_fields_groups`)
+  REFERENCES `#__k2toflexi_extra_fields_groups` (`id`),
+  CONSTRAINT `fk_forgein_cat`
+  FOREIGN KEY (`id_k2toflexi_categories`)
+  REFERENCES `#__k2toflexi_categories` (`id`),
+  CONSTRAINT `fk_forgein_field`
+  FOREIGN KEY (`id_k2toflexi_extra_fields`)
+  REFERENCES `#__k2toflexi_extra_fields` (`id`),
+  CONSTRAINT `fk_forgein_tag`
+  FOREIGN KEY (`id_k2toflexi_tag`)
+  REFERENCES `#__k2toflexi_tags` (`id`),
+  CONSTRAINT `fk_forgein_file`
+  FOREIGN KEY (`id_k2toflexi_attachments`)
+  REFERENCES `#__k2toflexi_attachments` (`id`),
+  CONSTRAINT `fk_forgein_item`
+  FOREIGN KEY (`id_k2toflexi_items`)
+  REFERENCES `#__k2toflexi_items` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_unicode_ci;

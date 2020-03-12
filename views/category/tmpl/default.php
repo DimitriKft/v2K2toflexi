@@ -32,18 +32,18 @@ $document->addStyleSheet("./components/com_k2toflexi/assets/css/style.css",'text
 		<tr>
 			<th width="1%">ID</th>
 			<th width="2%">NAME</th>
-			<th width="2%">ALIAS</th>
+		<!--	<th width="2%">ALIAS</th>
 			<th width="2%">DESCRIPTION</th>
-			<th width="2%">PARENT</th>
+			<th width="2%">PARENT</th> -->
 			<th width="2%">EXTRAFIELDSGROUP</th>
 			<th width="2%">PUBLISHED</th>
-			<th width="2%">ACCESS</th>
+		<!--	<th width="2%">ACCESS</th>
 			<th width="2%">ORDERING</th>
 			<th width="2%">IMAGE</th>
 			<th width="2%">PARAMS</th>
 			<th width="2%">TRASH</th>
 			<th width="2%">PLUGINS</th>
-			<th width="2%">LANGUAGE</th>
+			<th width="2%">LANGUAGE</th> -->
 		</tr>
 		</thead>
 		<tfoot>
@@ -59,18 +59,18 @@ $document->addStyleSheet("./components/com_k2toflexi/assets/css/style.css",'text
 					<tr>
 						<td align="center"><?php echo $row->id; ?></td>
 						<td align="center"><?php echo $row->name; ?></td>
-						<td align="center"><?php echo $row->alias; ?></td>
+				<!--		<td align="center"><?php echo $row->alias; ?></td>
 						<td align="center"><?php echo $row->description; ?></td>
-						<td align="center"><?php echo $row->parent; ?></td>
+						<td align="center"><?php echo $row->parent; ?></td> -->
 						<td align="center"><?php echo $row->extraFieldsGroup; ?></td>
 						<td align="center"><?php echo JHtml::_('jgrid.published', $row->published, $i, 'k2toflexi', true, 'cb'); ?></td>
-						<td align="center"><?php echo $row->access; ?></td>
+					<!--	<td align="center"><?php echo $row->access; ?></td>
 						<td align="center"><?php echo $row->ordering; ?></td>
 						<td align="center"><?php echo $row->image; ?></td>
 						<td align="center"><?php echo $row->params; ?></td>
 						<td align="center"><?php echo $row->trash; ?></td>
 						<td align="center"><?php echo $row->plugins; ?></td>
-						<td align="center"><?php echo $row->language; ?></td>
+						<td align="center"><?php echo $row->language; ?></td> -->
 					</tr>
 				<?php endforeach; ?>
 			<?php endif; ?>
