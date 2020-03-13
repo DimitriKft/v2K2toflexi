@@ -21,25 +21,7 @@ jimport('joomla.application.component.helper');
  */
 
 class K2toflexiControllerK2toflexi extends JControllerLegacy {
-	/**Overide the display methode for the controller
-	 * 
-	 * @return	void
-	 * @since 1.0
-	 */
-	
-	function display($cachable = false, $urlparams = false) 
-	{
-		require_once JPATH_COMPONENT.'/helpers/insert/migrate.php';
 
-		// affectation de la vue récupérée en paramètre
-		$input = JFactory::getApplication()->input;
-		$input->set('view', $input->getCmd('view', 'K2toflexi'));
-
-		parent::display($cachable = false, $urlparams = false);
-		
-		return $this;
-	}
-	
 	/**
 	 * method to call the migation method from the ajax code
 	 *
@@ -68,28 +50,6 @@ class K2toflexiControllerK2toflexi extends JControllerLegacy {
 		die;
 	}
 
-
-	public function analysis($data = false)
-	{
-		if ($data == false ){
-			$data = json_encode(array("success" => true, "message" => "Loading...", "task" => 'insertImg', "sql" => ''));
-		}
-  		$data = $_POST['json'];
-		$data = json_decode($data);
-  		$task = $data->{'task'};
-  		$sql = $data->{'sql'};
-		$valuesjsons = $this->getModel('analysis')->analyze($task, $sql);
-		$message = $this->getModel('message')->message($valuesjsons);	
-		$valuesjson = json_decode($valuesjsons);
-		$task = $valuesjson->{'task'};
-		$sql = $valuesjson->{'sql'};
-		
-		$response = json_encode(array("success" => true, "message" => $message, "task" => $task, "sql" => $sql));
-		echo $response;
-
-		die;
-	}
-	
 	/**
 	 * method to send the data for the ajax call
 	 *

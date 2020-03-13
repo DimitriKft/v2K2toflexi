@@ -17,7 +17,7 @@ defined('_JEXEC') or die('Restricted access');
  */
 class K2toflexiViewType extends JViewLegacy
 {
-/**
+	/**
 	 * Display the Hello World view
 	 *
 	 * @param   string  $tpl  The name of the template file to parse; automatically searches through the template paths.
@@ -50,6 +50,31 @@ class K2toflexiViewType extends JViewLegacy
 	
 	protected function addToolBar()
 	{
-		JToolBarHelper::title(JText::_("Selection des type"));
+		
+
+		$state = $this->get('State');
+		$canDo = migrateHelper::getActions();
+		$user		= JFactory::getUser();
+		$userId		= $user->get('id');
+		
+		JToolBarHelper::title(JText::_("Selection des types"));
+
+
+		if ( !JComponentHelper::isEnabled( 'com_flexicontent', true) ) {
+			echo 'This modules requires component FLEXIcontent!';
+			return;
+		}
+		else {
+			JToolBarHelper::custom('k2toflexi.migrate', 'copy.png', 'copy_f2.png', 'Tag', false, true);
+		}
+		
+		JToolbarHelper::cancel('k2toflexi.cancel');
+
+
+		//check if the Options button can be added.
+		if ($canDo->get('core.admin')){
+			JToolBarHelper::preferences('com_k2toflexi');
+		}
 	}
+	
 }

@@ -28,6 +28,59 @@ class InsertTagHelper
 	 * @since	1.0
 	 */
 
+	public function tag($task, $sql)
+	{
+		//initialise variables.
+		$db                         = JFactory::getDBO();
+		$user                       = JFactory::getUser();
+		$dateTime                   = date_create('now')->format('Y-m-d H:i:s');
+		$sql                        = json_decode(json_encode($sql),    true);
+		$params                     = JComponentHelper::getParams('com_k2toflexi');
+		$recoveredTags              = $params['insertTags'];
+		$debug                      = $params['debug'];
+		$rotatDate                  = JFactory::getDate()->format('Y-m');
+
+		Jlog::addLogger ( 
+			array(
+				'logger'   => 'database',
+				'db_table' => '#__log_k2toflexi',
+				),
+				JLog::INFO
+			);
+		Jlog::addLogger ( 
+			array(
+				'text_file'         => 'k2toflexi_'.$rotatDate.'.log.php',
+				'text_entry_format' => '{DATE} {TIME} {CLIENTIP} {CATEGORY} {MESSAGE}'
+				),
+				JLog::ERROR
+			);
+
+	
+		 if($task == 'insertFiles'    && $recoveredFiles    == 2)
+		 {
+			$task =      'insertTags';
+		 }
+
+	 if($task == 'insertTags')
+		{
+			$valuesjsons = $this->recoveredTags($sql);
+			return $valuesjsons;
+			if($debug == 1)
+			{
+            	$logEntry = new JlogEntry("Insert tag ", JLog::INFO, $srvdate , 'tag');
+            	Jlog::add($logEntry);
+				$logEntry2 = new JlogEntry("Insert tag ", JLog::ERROR, $srvdate , 'tag');
+				Jlog::add($logEntry2);
+			}
+			die();
+		}
+		else
+		{
+			return (json_encode(array('task' => false, 'sql' => '', 'message' => '', 'type' => '', 'name' => '')));
+			die;
+		}
+	}
+
      
 	public function recoveredTags($sql) 
 	{

@@ -33,4 +33,39 @@ class K2toflexiModelTag extends JModelList
                 ->from($db->quoteName('#__k2toflexi_tags'));
 		return $query;
 	}
+
+	public function tag($task, $sql)
+	{
+		$class   = new InsertTagHelper();
+		$methods = $class->tag($task, $sql);
+		return $methods;
+	}
+	
+	public function recoveredTags($sql) 
+	{
+		$class   = new InsertTagHelper();
+		$methods = $class->recoveredTags($sql);
+		return $methods;
+    }
+	
+	public function insertTags($row)
+	{
+		$class   = new InsertTagHelper();
+		$methods = $class->insertTags($row);
+		return $methods;
+	}
+
+	public function addTag($record_ID, $name, $alias, $published, $checked_out, $checked_out_time)
+	{
+		$class   = new InsertTagHelper();
+		$methods = $class->addTag($record_ID, $name, $alias, $published, $checked_out, $checked_out_time);
+		return $methods;
+	}
+
+	public function deleteTag($name)
+	{
+		$class   = new InsertTagHelper();
+		$methods = $class->deleteTag($name);
+		return $methods;
+	}	
 }

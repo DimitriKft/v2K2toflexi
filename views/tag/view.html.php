@@ -52,6 +52,31 @@ class K2toflexiViewTag extends JViewLegacy
 	
 	protected function addToolBar()
 	{
+		
+
+		$state = $this->get('State');
+		$canDo = migrateHelper::getActions();
+		$user		= JFactory::getUser();
+		$userId		= $user->get('id');
+		
 		JToolBarHelper::title(JText::_("Selection des tags"));
+
+
+		if ( !JComponentHelper::isEnabled( 'com_flexicontent', true) ) {
+			echo 'This modules requires component FLEXIcontent!';
+			return;
+		}
+		else {
+			JToolBarHelper::custom('k2toflexi.migrate', 'copy.png', 'copy_f2.png', 'Tag', false, true);
+		}
+		
+		JToolbarHelper::cancel('k2toflexi.cancel');
+
+
+		//check if the Options button can be added.
+		if ($canDo->get('core.admin')){
+			JToolBarHelper::preferences('com_k2toflexi');
+		}
 	}
+	
 }

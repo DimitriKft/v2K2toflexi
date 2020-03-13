@@ -24,6 +24,7 @@ JLoader::register('ExtractFileHelper',   JPATH_ADMINISTRATOR . DIRECTORY_SEPARAT
 
 
 // Loads the migration class
+JLoader::register('TagHelper',     JPATH_ADMINISTRATOR . DIRECTORY_SEPARATOR . 'components' . DIRECTORY_SEPARATOR . 'com_k2toflexi' . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'insert' . DIRECTORY_SEPARATOR . 'tag.php');
 JLoader::register('migrateHelper',     JPATH_ADMINISTRATOR . DIRECTORY_SEPARATOR . 'components' . DIRECTORY_SEPARATOR . 'com_k2toflexi' . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'insert' . DIRECTORY_SEPARATOR . 'migrate.php');
 JLoader::register('InsertImgHelper',   JPATH_ADMINISTRATOR . DIRECTORY_SEPARATOR . 'components' . DIRECTORY_SEPARATOR . 'com_k2toflexi' . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'insert' . DIRECTORY_SEPARATOR . 'insert_img.php');
 JLoader::register('InsertTagHelper',   JPATH_ADMINISTRATOR . DIRECTORY_SEPARATOR . 'components' . DIRECTORY_SEPARATOR . 'com_k2toflexi' . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'insert' . DIRECTORY_SEPARATOR . 'insert_tag.php');

@@ -93,7 +93,7 @@ function NextData(data){
 	function waitForNextData(data){
 	jQuery.ajax({
 		method: "post",
-		url:"index.php?option=com_k2toflexi&task=k2toflexi.analysis&tmpl=component",
+		url:"index.php?option=com_k2toflexi&task=analysis.analysis&tmpl=component",
 		data : {json: data},
 	    dataType : "json",
 
@@ -124,7 +124,7 @@ function NextData(data){
 		function waitForFirstData(){
 	jQuery.ajax({
 		method: "post",
-		url:"index.php?option=com_k2toflexi&task=k2toflexi.firstmigrate&tmpl=component",
+		url:"index.php?option=com_k2toflexi&task=analysis.firstanalysis&tmpl=component",
 	    dataType : "json",
 	    contentType: "application/json; charset=utf-8",
 

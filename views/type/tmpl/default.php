@@ -12,13 +12,16 @@ defined('_JEXEC') or die('Restricted access');
 
 $document = JFactory::getDocument();
 $document->addStyleSheet("./components/com_k2toflexi/assets/css/style.css",'text/css',"screen");
-
+JText::script('COM_K2TOFLEXI_MIGRATIONFINISHED');
+JText::script('COM_K2TOFLEXI_FLEXIREQUIRE');
+JText::script('COM_K2TOFLEXI_K2REQUIRE');
+JText::script('COM_K2TOFLEXI_LOADING');
 ?>
 
 
 <?php if (!empty( $this->sidebar)) : ?>
 	<div id="j-sidebar-container" class="span2 col-md-2">
-	<h2 class="t3-off-canvas-header-title"><?php echo JText::_('COM_K2TOFLEXI_SIDEBAR_ANALYSIS') ?></h2>
+	<h2 class="t3-off-canvas-header-title"><?php echo JText::_('Sélection des types') ?></h2>
 		<?php echo str_replace('type="button"', '', $this->sidebar); ?>
 	</div>
 	<div id="j-main-container" class="span10 col-md-10">
@@ -64,3 +67,157 @@ $document->addStyleSheet("./components/com_k2toflexi/assets/css/style.css",'text
 		</tbody>
 	</table>
 </div>
+
+
+<form action="index.php" method="post" id="adminForm" name="adminForm">
+	<input type = "hidden" name = "task" value = "com_k2toflexi" />
+	<input type = "hidden" name = "option" value = "com_k2toflexi" />
+</form>
+<div id="contenu">
+	<div id="titre" class="page-header"><h1><?php echo 'Migrer vos Type'; ?></h1></div>
+	<div id="k2toflexi"><button id="renderbutton" type="button" class="btn btn-primary" value="renderbutton" onclick="waitForFirstData();"><?php echo 'Migrer vos type'; ?></button></div>
+	<span id="loading2"></span>
+	<span id="loading"></span>
+	<div class="btn-group" role="group" id="boutons">
+		<button class="btn btn-secondary btn-info"    onclick = "showall()">     <?php   echo JText::_("COM_K2TOFLEXI_ALL");?>     </button>
+		<button class="btn btn-secondary btn-danger"  onclick = "showerrors()">  <?php   echo JText::_("COM_K2TOFLEXI_ERROR");?>   </button>
+		<button class="btn btn-secondary btn-warning" onclick = "showalert()">   <?php   echo JText::_("COM_K2TOFLEXI_ALERT");?>   </button>
+		<button class="btn btn-secondary btn-success" onclick = "showsuccess()"> <?php   echo JText::_("COM_K2TOFLEXI_SUCCESS");?> </button>
+	</div>
+	<div id="messages" class="hero-unit"></div>
+</div>
+<div id="read"></div>
+
+<?php
+
+if ( !JComponentHelper::isEnabled( 'com_flexicontent', true) ) {
+	JFactory::getDocument()->addScriptDeclaration(
+	<<<JS
+	jQuery(document).ready(function () {
+	jQuery("#renderbutton").hide();
+		jQuery("#messages").append(
+			Joomla.JText._('COM_K2TOFLEXI_FLEXIREQUIRE')
+	);
+	}
+);
+JS
+);
+}
+if ( !JComponentHelper::isEnabled( 'com_k2', true) ) {
+	JFactory::getDocument()->addScriptDeclaration(
+	<<<JS
+	jQuery(document).ready(function () {
+	jQuery("#renderbutton").hide();
+		jQuery("#messages").append(
+			Joomla.JText._('COM_K2TOFLEXI_K2REQUIRE')
+	);
+	}
+);
+JS
+);
+}
+
+JFactory::getDocument()->addScriptDeclaration(
+<<<JS
+
+function NextData(data){
+	jQuery("#messages").append(
+			"<div class='msg new'>"+ data +"</div>"
+	);
+}
+
+
+	function waitForNextData(data){
+	jQuery.ajax({
+		method: "post",
+		url:"index.php?option=com_k2toflexi&task=type.type&tmpl=component",
+		data : {json: data},
+	    dataType : "json",
+
+		success: function(data){
+			console.log("success n�2");
+			console.log(data);
+			if (data.task == false){
+				NextData(data.message);
+ 				scrollmove();
+				jQuery("#loading2").hide()
+				jQuery("#loading").append(
+					Joomla.JText._('COM_K2TOFLEXI_MIGRATIONFINISHED')
+				);
+	        }else{
+				NextData(data.message);
+ 				scrollmove();
+				waitForNextData(JSON.stringify(data));
+	        }
+		},
+        error: function(r) {
+			console.log("error n�2");
+			console.log(r);
+			waitForNextData(data);
+        }
+	});
+};
+
+		function waitForFirstData(){
+	jQuery.ajax({
+		method: "post",
+		url:"index.php?option=com_k2toflexi&task=type.firstmigrateType&tmpl=component",
+	    dataType : "json",
+	    contentType: "application/json; charset=utf-8",
+
+		success: function(data){
+			jQuery("#renderbutton").hide();
+
+			jQuery("#loading2").append(
+				Joomla.JText._('COM_K2TOFLEXI_LOADING')
+			);
+			console.log("success");
+			console.log(JSON.stringify(data));
+			NextData(data.message);
+			waitForNextData(JSON.stringify(data));
+		},
+		error: function(data){
+			alert(data);
+		}
+	});
+};
+
+ 		function scrollmove(){
+
+			var elem = document.getElementById('messages');
+			elem.scrollTop = elem.scrollHeight;
+ 		};
+
+		function showall()
+{
+	jQuery(".alert-success").show();
+	jQuery(".exist").show();
+	jQuery(".alert-error").show();
+};
+
+		function showerrors()
+{
+	jQuery(".alert-error").show();
+	jQuery(".alert-success").hide();
+	jQuery(".exist").hide();
+};
+
+		function showalert()
+{
+	jQuery(".exist").show();
+	jQuery(".alert-success").hide();
+	jQuery(".alert-error").hide();
+};
+
+		function showsuccess()
+{
+	jQuery(".alert-success").show();
+	jQuery(".exist").hide();
+	jQuery(".alert-error").hide();
+};
+
+JS
+);
+
+?>
+

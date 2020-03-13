@@ -46,7 +46,7 @@ class k2toflexiViewK2toflexi extends JViewLegacy
 		}
 		
 		JToolbarHelper::cancel('k2toflexi.cancel');
-
+	
 
 		//check if the Options button can be added.
 		if ($canDo->get('core.admin')){

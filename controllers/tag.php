@@ -20,16 +20,19 @@ jimport('joomla.application.component.helper');
  * @subpackage	k2toflexi
  */
 
-class K2toflexiControllerAnalysis extends JControllerLegacy {
+class K2toflexiControllerTag extends JControllerLegacy {
 
+
+	
 	/**
 	 * method to call the migation method from the ajax code
 	 *
 	 * @return void
 	 * @since 1.0
 	 */
-	
-	public function analysis($data = false)
+
+
+	public function tag($data = false)
 	{
 		if ($data == false ){
 			$data = json_encode(array("success" => true, "message" => "Loading...", "task" => 'insertImg', "sql" => ''));
@@ -38,7 +41,7 @@ class K2toflexiControllerAnalysis extends JControllerLegacy {
 		$data = json_decode($data);
   		$task = $data->{'task'};
   		$sql = $data->{'sql'};
-		$valuesjsons = $this->getModel('analysis')->analyze($task, $sql);
+		$valuesjsons = $this->getModel('tag')->tag($task, $sql);
 		$message = $this->getModel('message')->message($valuesjsons);	
 		$valuesjson = json_decode($valuesjsons);
 		$task = $valuesjson->{'task'};
@@ -49,7 +52,6 @@ class K2toflexiControllerAnalysis extends JControllerLegacy {
 
 		die;
 	}
-
 	
 	/**
 	 * method to send the data for the ajax call
@@ -58,13 +60,15 @@ class K2toflexiControllerAnalysis extends JControllerLegacy {
 	 * @since 1.0
 	 */
 
-	public function firstanalysis()
+	public function firstmigrateTag()
 	{
-		$response = json_encode(array("success" => true, "message" => "Loading...", "task" => 'insertImg', "sql" => ''));
+		$response = json_encode(array("success" => true, "message" => "Loading...", "task" => 'insertTags', "sql" => ''));
 		
 		echo $response;
 		die;
 	}
+	
+
 	
 	/**
 	 * method to continue the migration in case an error happens so that it doesn't crash
