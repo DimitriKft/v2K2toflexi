@@ -27,7 +27,52 @@ class InsertCatHelper
 	 * @return 	JObject
 	 * @since	1.0
 	 */
+	public function category($task, $sql)
+	{
+		//initialise variables.
+		$db                         = JFactory::getDBO();
+		$user                       = JFactory::getUser();
+		$dateTime                   = date_create('now')->format('Y-m-d H:i:s');
+		$sql                        = json_decode(json_encode($sql),    true);
+		$params                     = JComponentHelper::getParams('com_k2toflexi');
+		$recoveredCategory          = $params['insertCategory'];
+		$debug                      = $params['debug'];
+		$rotatDate                  = JFactory::getDate()->format('Y-m');
 
+		Jlog::addLogger ( 
+			array(
+				'logger'   => 'database',
+				'db_table' => '#__log_k2toflexi',
+				),
+				JLog::INFO
+			);
+		Jlog::addLogger ( 
+			array(
+				'text_file'         => 'k2toflexi_'.$rotatDate.'.log.php',
+				'text_entry_format' => '{DATE} {TIME} {CLIENTIP} {CATEGORY} {MESSAGE}'
+				),
+				JLog::ERROR
+			);
+
+	 if($task == 'insertCategory')
+		{
+			$valuesjsons = $this->recoveredCategory($sql);
+			return $valuesjsons;
+			if($debug == 1)
+			{
+            	$logEntry = new JlogEntry("Insert cat ", Jlog::INFO, $srvdate , 'categorie');
+            	Jlog::add($logEntry);
+				$logEntry = new JlogEntry("Insert cat ", Jlog::ERROR, $srvdate , 'categorie');
+				Jlog::add($logEntry);
+			}
+			die();
+		}
+		else
+		{
+			return (json_encode(array('task' => false, 'sql' => '', 'message' => '', 'type' => '', 'name' => '')));
+			die;
+		}
+	}
 
     public function recoveredCategory($sql)
 	{
