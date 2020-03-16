@@ -27,7 +27,53 @@ class InsertFieldHelper
 	 * @return 	JObject
 	 * @since	1.0
 	 */
-    
+	public function field($task, $sql)
+	{
+		//initialise variables.
+		$db                         = JFactory::getDBO();
+		$user                       = JFactory::getUser();
+		$dateTime                   = date_create('now')->format('Y-m-d H:i:s');
+		$sql                        = json_decode(json_encode($sql),    true);
+		$params                     = JComponentHelper::getParams('com_k2toflexi');
+		$recoveredFields            = $params['insertFields'];
+		$debug                      = $params['debug'];
+		$rotatDate                  = JFactory::getDate()->format('Y-m');
+
+		Jlog::addLogger ( 
+			array(
+				'logger'   => 'database',
+				'db_table' => '#__log_k2toflexi',
+				),
+				JLog::INFO
+			);
+		Jlog::addLogger ( 
+			array(
+				'text_file'         => 'k2toflexi_'.$rotatDate.'.log.php',
+				'text_entry_format' => '{DATE} {TIME} {CLIENTIP} {CATEGORY} {MESSAGE}'
+				),
+				JLog::ERROR
+			);
+
+			if($task == 'insertFields')
+		{
+			$valuesjsons = $this->recoveredFields($sql);
+			return $valuesjsons;
+			if($debug == 1)
+			{
+            	$logEntry = new JlogEntry("Insert field ", Jlog::INFO, $srvdate , 'field');
+				$logEntry = new JlogEntry("Insert field ", Jlog::ERROR, $srvdate , 'field');
+            	Jlog::add($logEntry);
+			}
+			die();
+		}
+		else
+		{
+			return (json_encode(array('task' => false, 'sql' => '', 'message' => '', 'type' => '', 'name' => '')));
+			die;
+		}
+	}
+
+
 	public function recoveredFields($sql) 
 	{
 		$db          = JFactory::getDBO();

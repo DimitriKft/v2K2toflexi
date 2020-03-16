@@ -56,11 +56,7 @@ class InsertTagHelper
 			);
 
 	
-		 if($task == 'insertFiles'    && $recoveredFiles    == 2)
-		 {
-			$task =      'insertTags';
-		 }
-
+	
 	 if($task == 'insertTags')
 		{
 			$valuesjsons = $this->recoveredTags($sql);

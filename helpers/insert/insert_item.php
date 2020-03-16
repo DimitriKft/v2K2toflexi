@@ -29,6 +29,55 @@ class InsertItemHelper
 	 */
 
 
+
+	public function item($task, $sql)
+	{
+		//initialise variables.
+		$db                         = JFactory::getDBO();
+		$user                       = JFactory::getUser();
+		$dateTime                   = date_create('now')->format('Y-m-d H:i:s');
+		$sql                        = json_decode(json_encode($sql),    true);
+		$params                     = JComponentHelper::getParams('com_k2toflexi');
+		$recoveredItem              = $params['insertItem'];
+		$debug                      = $params['debug'];
+		$rotatDate                  = JFactory::getDate()->format('Y-m');
+
+		Jlog::addLogger ( 
+			array(
+				'logger'   => 'database',
+				'db_table' => '#__log_k2toflexi',
+				),
+				JLog::INFO
+			);
+		Jlog::addLogger ( 
+			array(
+				'text_file'         => 'k2toflexi_'.$rotatDate.'.log.php',
+				'text_entry_format' => '{DATE} {TIME} {CLIENTIP} {CATEGORY} {MESSAGE}'
+				),
+				JLog::ERROR
+			);
+		
+		   if($task == 'insertItem')
+		   {
+			$valuesjsons = $this->recoveredItem($sql);
+			return $valuesjsons;
+			if($debug == 1)
+			{
+            	$logEntry = new JlogEntry("Insert item ", Jlog::INFO, $srvdate , 'item');
+            	Jlog::add($logEntry);
+			    $logEntry = new JlogEntry("Insert item ", Jlog::ERROR, $srvdate , 'item');
+			    Jlog::add($logEntry);
+			}
+			die();
+		}
+		else
+		{
+			return (json_encode(array('task' => false, 'sql' => '', 'message' => '', 'type' => '', 'name' => '')));
+			die;
+		}
+	}
+
+
     public function recoveredItem($sql)
 	{
 		$db    = JFactory::getDBO();

@@ -78,5 +78,4 @@ class K2toflexiViewTag extends JViewLegacy
 			JToolBarHelper::preferences('com_k2toflexi');
 		}
 	}
-	
 }
